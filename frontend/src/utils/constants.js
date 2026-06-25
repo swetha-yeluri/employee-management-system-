@@ -1,0 +1,16 @@
+// NAV_ITEMS drives the sidebar.
+//   adminOnly -> Admin role only ; (no flag) -> everyone
+// Role-change Requests and Reactivation Requests now live INSIDE Settings.
+export const NAV_ITEMS = [
+  { key: "dashboard", label: "Dashboard", path: "/dashboard", icon: "LayoutDashboard" },
+  { key: "employees", label: "Employees", path: "/employees", icon: "Users" },
+  { key: "departments", label: "Departments", path: "/departments", icon: "Building2", adminOnly: true },
+  { key: "attendance", label: "Attendance", path: "/attendance", icon: "CalendarCheck" },
+  { key: "members", label: "Members", path: "/members", icon: "UserCog", adminOnly: true },
+  { key: "activity", label: "Activity", path: "/activity", icon: "Activity", adminOnly: true },
+  { key: "audit", label: "Audit Logs", path: "/audit-logs", icon: "ScrollText", adminOnly: true },
+  { key: "export", label: "Data Export Center", path: "/data-export", icon: "Download", adminOnly: true },
+  { key: "settings", label: "Settings", path: "/settings", icon: "Settings" },
+];
+
+export const EMPLOYEE_STATUSES = ["Active", "Inactive", "On Leave"];
