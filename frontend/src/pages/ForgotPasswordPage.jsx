@@ -1,6 +1,4 @@
-// Forgot Password screen. Verifies the email exists on the backend and sets
-// a new password, with full client-side validation. After a successful reset
-// the user is sent to the login page.
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";

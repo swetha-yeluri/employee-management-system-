@@ -1,4 +1,4 @@
-// Labelled input with inline error message support.
+
 export default function Input({ label, error, className = "", ...rest }) {
   return (
     <label className="block">

@@ -1,4 +1,4 @@
-// Confirmation modal shown before destructive actions like delete (Task 6).
+
 import Modal from "./Modal";
 import Button from "./Button";
 

@@ -1,6 +1,4 @@
-"""A user's request to gain access to the Attendance module (Improvement 7).
-Created automatically the first time a user opens the Attendance tab.
-"""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

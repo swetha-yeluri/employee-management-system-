@@ -1,7 +1,4 @@
-// Settings hub (available to everyone).
-//  - Admin: review & approve/reject Role Requests AND Reactivation Requests.
-//  - User : request promotion to Admin + track status.
-//  - Both : account info + appearance (theme).
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -28,7 +25,7 @@ const STATUS_META = {
   rejected: { icon: XCircle, tone: "text-red-500", label: "Rejected" },
 };
 
-/* ---------------- Admin: an approve/reject list section ---------------- */
+
 function ApprovalSection({ title, icon: Icon, emptyText, items, onApprove, onReject, render }) {
   const [busyId, setBusyId] = useState(null);
 

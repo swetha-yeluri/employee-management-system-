@@ -1,6 +1,4 @@
-"""Aggregation logic for the analytics dashboard. All counts are scoped to
-the caller's company.
-"""
+
 from sqlalchemy.orm import Session
 
 from app.models.department_model import Department

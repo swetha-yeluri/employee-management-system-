@@ -1,4 +1,4 @@
-// Reusable button with variants. Used across forms, modals, and toolbars.
+
 const VARIANTS = {
   primary:
     "bg-accent-600 hover:bg-accent-700 text-white shadow-soft disabled:opacity-50",

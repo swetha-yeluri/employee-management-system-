@@ -1,4 +1,4 @@
-// Recharts visualisations. Each expects an array of { label, count }.
+
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, CartesianGrid,

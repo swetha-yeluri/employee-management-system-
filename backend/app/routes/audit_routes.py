@@ -1,4 +1,4 @@
-"""Audit log endpoint. Admin-only, scoped to the admin's company."""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

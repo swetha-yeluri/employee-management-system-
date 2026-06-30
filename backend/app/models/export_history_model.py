@@ -1,4 +1,4 @@
-"""History of data exports (who exported what, and when) — Improvement 10."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

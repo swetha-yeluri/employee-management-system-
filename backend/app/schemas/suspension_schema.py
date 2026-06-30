@@ -1,4 +1,4 @@
-"""Schemas for suspension (Improvement 11)."""
+
 from datetime import datetime
 from typing import Optional
 

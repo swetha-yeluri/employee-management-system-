@@ -1,4 +1,4 @@
-// Generic pill badge used for counts and tags.
+
 export default function Badge({ children, tone = "neutral" }) {
   const tones = {
     neutral: "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",

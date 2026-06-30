@@ -1,7 +1,4 @@
-"""Suspension logic (Improvement 11): admins suspend users/admins in their
-company; suspended users can read their own suspension status. Company-scoped,
-audit-logged. The actual access-blocking is enforced in deps.require_active_user.
-"""
+
 from datetime import datetime
 
 from fastapi import HTTPException

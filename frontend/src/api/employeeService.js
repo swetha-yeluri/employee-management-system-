@@ -1,5 +1,4 @@
-// Employee + department API calls. UI components call these and never touch
-// axios directly (clean separation of services).
+
 import axiosClient from "./axiosClient";
 
 export const employeeService = {
@@ -34,6 +33,18 @@ export const employeeService = {
   },
   async getDepartments() {
     const { data } = await axiosClient.get("/api/departments");
+    return data;
+  },
+  async getCompletion(id) {
+    const { data } = await axiosClient.get(`/api/employees/${id}/completion`);
+    return data;
+  },
+  async getAllCompletion(threshold = 100) {
+    const { data } = await axiosClient.get(`/api/employees/completion/all?threshold=${threshold}`);
+    return data;
+  },
+  async getMyCompletion() {
+    const { data } = await axiosClient.get("/api/employees/completion/me");
     return data;
   },
 };

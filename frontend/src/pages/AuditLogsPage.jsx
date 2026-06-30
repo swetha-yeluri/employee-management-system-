@@ -1,5 +1,4 @@
-// Admin-only Audit Logs page: an activity history table of tracked actions,
-// scoped to the admin's company.
+
 import { useEffect, useState } from "react";
 import { ScrollText } from "lucide-react";
 

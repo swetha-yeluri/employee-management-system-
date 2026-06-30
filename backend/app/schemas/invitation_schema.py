@@ -1,4 +1,4 @@
-"""Schemas for the invitation workflow."""
+
 from datetime import datetime
 from typing import Literal
 

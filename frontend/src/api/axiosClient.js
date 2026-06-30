@@ -1,5 +1,4 @@
-// Central axios instance. The request interceptor attaches the JWT to every
-// call; the response interceptor logs the user out automatically on a 401.
+
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";

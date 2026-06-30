@@ -1,6 +1,3 @@
-"""Importing the models registers every table on the shared Base before
-create_all() runs.
-"""
 from app.models.attendance_access_request_model import AttendanceAccessRequest
 from app.models.attendance_record_model import AttendanceRecord
 from app.models.audit_log_model import AuditLog

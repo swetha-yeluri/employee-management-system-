@@ -1,6 +1,4 @@
-"""Reactivation endpoints. submit/mine use get_current_user (deactivated users
-must reach these); pending/approve/reject require admin.
-"""
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 

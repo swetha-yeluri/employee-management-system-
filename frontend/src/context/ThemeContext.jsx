@@ -1,5 +1,4 @@
-// Dark/light theme toggle. The chosen theme is stored and applied as a class
-// on <html> so Tailwind's `dark:` variants work app-wide.
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext(null);

@@ -1,4 +1,4 @@
-"""Member management: list members + deactivate (admin, company-scoped)."""
+
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 

@@ -1,4 +1,4 @@
-"""A login/logout activity record for a user (Improvement 9)."""
+
 from datetime import datetime
 
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String

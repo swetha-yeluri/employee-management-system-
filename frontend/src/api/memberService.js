@@ -1,4 +1,4 @@
-// Member API (admin only).
+
 import axiosClient from "./axiosClient";
 
 export const memberService = {

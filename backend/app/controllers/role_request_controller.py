@@ -1,6 +1,4 @@
-"""Business logic for the role-change request workflow, scoped per company
-and recorded in the audit log.
-"""
+
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 

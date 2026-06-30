@@ -1,5 +1,4 @@
-// Report downloads. The backend gates these on the admin role, so a User
-// cannot fetch them; the UI also hides the button. Two layers of protection.
+
 import axiosClient from "./axiosClient";
 
 export const reportService = {
@@ -8,7 +7,7 @@ export const reportService = {
       responseType: "blob",
     });
 
-    // Turn the blob into a browser download.
+    
     const url = window.URL.createObjectURL(new Blob([response.data]));
     const link = document.createElement("a");
     link.href = url;

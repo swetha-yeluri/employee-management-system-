@@ -1,4 +1,4 @@
-"""Member endpoints (admin only, company-scoped)."""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

@@ -1,5 +1,4 @@
-// Admin-only: account activity for users in the company (Improvement 9).
-// Shows last login/logout, browser, IP, and highlights new device / new IP.
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Activity, MonitorSmartphone, Globe } from "lucide-react";

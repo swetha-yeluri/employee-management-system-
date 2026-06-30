@@ -1,6 +1,4 @@
-"""Invitation workflow logic: create/list/revoke (admin) and verify/accept
-(public). All admin actions are company-scoped and audit-logged.
-"""
+
 import secrets
 
 from fastapi import HTTPException, status

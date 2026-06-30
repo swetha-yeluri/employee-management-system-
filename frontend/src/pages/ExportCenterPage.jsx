@@ -1,6 +1,4 @@
-// Admin-only Data Export Center (Improvement 10).
-// Export Employees / Attendance / Leaves / Audit Logs / Notifications / Analytics
-// as CSV / Excel / PDF, and view export history (who / when / what).
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {

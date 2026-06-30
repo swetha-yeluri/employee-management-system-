@@ -1,5 +1,4 @@
-// Holds the authenticated user + token and exposes login/signup/logout +
-// refreshUser. Session persisted to localStorage.
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { authService } from "../api/authService";
 import { invitationService } from "../api/invitationService";

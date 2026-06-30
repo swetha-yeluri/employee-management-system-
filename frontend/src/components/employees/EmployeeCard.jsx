@@ -1,4 +1,4 @@
-// Card view of a single employee with a profile preview and quick actions.
+
 import { Pencil, Trash2, Mail } from "lucide-react";
 import StatusBadge from "./StatusBadge";
 

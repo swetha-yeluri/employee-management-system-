@@ -1,6 +1,4 @@
-"""Audit logging helper + reader. write_log() is called by other controllers
-whenever a tracked action happens; list_logs() powers the Audit Logs page.
-"""
+
 from sqlalchemy.orm import Session
 
 from app.models.audit_log_model import AuditLog

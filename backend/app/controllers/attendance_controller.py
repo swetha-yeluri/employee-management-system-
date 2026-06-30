@@ -1,6 +1,4 @@
-"""Attendance module logic: access requests (auto-created), admin approval,
-and check-in / check-out / today / history / summary. Company-scoped + audited.
-"""
+
 from datetime import datetime
 
 from fastapi import HTTPException

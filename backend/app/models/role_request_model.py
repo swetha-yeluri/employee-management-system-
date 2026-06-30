@@ -1,6 +1,4 @@
-"""Stores a user's request to be promoted to admin. Scoped to a company.
-The request stays 'pending' until the specified admin approves or rejects it.
-"""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

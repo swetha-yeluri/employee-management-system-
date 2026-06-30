@@ -1,4 +1,4 @@
-"""Schemas for the authentication flow (signup, login, password reset)."""
+
 from typing import Literal
 
 from pydantic import BaseModel, EmailStr, Field

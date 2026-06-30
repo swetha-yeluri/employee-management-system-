@@ -1,4 +1,4 @@
-// Search box + department filter + a view toggle (table/cards).
+
 import { Search, Plus, LayoutGrid, List } from "lucide-react";
 import Button from "../common/Button";
 

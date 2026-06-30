@@ -1,4 +1,4 @@
-"""History of an employee's department transfers (Improvement 8)."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

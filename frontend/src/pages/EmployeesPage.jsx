@@ -1,5 +1,4 @@
-// Core employee management page. Wires together data fetching, search/filter,
-// the table/card views, and full CRUD via modal forms (Tasks 2, 4, 6).
+
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { AlertCircle, Users } from "lucide-react";

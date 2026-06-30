@@ -1,4 +1,4 @@
-// Shared shell for every authenticated page: sidebar + navbar + content slot.
+
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";

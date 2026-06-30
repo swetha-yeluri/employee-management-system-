@@ -1,4 +1,4 @@
-"""Account activity endpoints (admin view, company-scoped)."""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

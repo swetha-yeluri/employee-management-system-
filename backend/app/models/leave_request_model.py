@@ -1,4 +1,4 @@
-"""A leave request submitted by a user, reviewed by company admins."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

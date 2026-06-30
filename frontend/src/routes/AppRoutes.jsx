@@ -1,6 +1,4 @@
-// Central route table. Public auth routes are open; everything else sits behind
-// ProtectedRoute (which enforces the deactivation gate + roles).
-// Role Requests + Reactivation Requests are handled inside Settings now.
+
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import DashboardLayout from "../components/layout/DashboardLayout";
@@ -20,6 +18,8 @@ import AuditLogsPage from "../pages/AuditLogsPage";
 import ActivityPage from "../pages/ActivityPage";
 import ExportCenterPage from "../pages/ExportCenterPage";
 import SettingsPage from "../pages/SettingsPage";
+import ProfileCompletionPage from "../pages/ProfileCompletionPage";
+
 
 export default function AppRoutes() {
   return (
@@ -55,6 +55,8 @@ export default function AppRoutes() {
           </ProtectedRoute>
         }
       >
+        
+
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/employees" element={<EmployeesPage />} />
 
@@ -65,10 +67,13 @@ export default function AppRoutes() {
         <Route path="/activity" element={<ProtectedRoute adminOnly><ActivityPage /></ProtectedRoute>} />
         <Route path="/audit-logs" element={<ProtectedRoute adminOnly><AuditLogsPage /></ProtectedRoute>} />
         <Route path="/data-export" element={<ProtectedRoute adminOnly><ExportCenterPage /></ProtectedRoute>} />
+        <Route path="/profile-completion" element={<ProtectedRoute adminOnly><ProfileCompletionPage /></ProtectedRoute>} />
 
         {/* Settings: available to everyone (admins manage requests here) */}
         <Route path="/settings" element={<SettingsPage />} />
       </Route>
+
+     
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

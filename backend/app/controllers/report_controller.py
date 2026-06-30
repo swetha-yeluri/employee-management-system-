@@ -1,4 +1,4 @@
-"""Report generation. The attendance CSV is scoped to the admin's company."""
+
 import csv
 import io
 

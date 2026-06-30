@@ -1,8 +1,4 @@
-"""Database engine, session factory, and the declarative Base.
 
-Everything that needs to talk to the database imports from this single
-module, so the connection setup lives in exactly one place.
-"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 

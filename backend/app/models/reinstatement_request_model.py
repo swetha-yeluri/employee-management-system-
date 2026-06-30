@@ -1,4 +1,4 @@
-"""A suspended user's request to be reinstated (Improvement 11)."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

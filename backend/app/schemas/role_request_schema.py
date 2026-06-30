@@ -1,13 +1,13 @@
-"""Schemas for the role-change request workflow."""
+
 from datetime import datetime
 
 from pydantic import BaseModel, EmailStr
 
 
 class RoleRequestCreate(BaseModel):
-    """User submits this to request promotion to admin."""
-    current_password: str          # identity verification
-    admin_email: EmailStr          # admin who should review the request
+    
+    current_password: str          
+    admin_email: EmailStr          
 
 
 class RoleRequestOut(BaseModel):

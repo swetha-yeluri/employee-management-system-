@@ -1,4 +1,4 @@
-// Departments overview with employee counts per department.
+
 import { useEffect, useState } from "react";
 import { Building2 } from "lucide-react";
 import { employeeService } from "../api/employeeService";

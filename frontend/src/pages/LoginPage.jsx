@@ -1,6 +1,4 @@
-// Login screen styled to match the reference UI: a centered white card on a
-// light-blue page, avatar badge, Welcome Back heading, email/password with
-// icons, remember-me + forgot-password, and a full-width blue button.
+
 import { useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";

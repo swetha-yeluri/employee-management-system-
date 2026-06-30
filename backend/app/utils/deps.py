@@ -1,10 +1,4 @@
-"""Reusable FastAPI dependencies for authentication and access control.
 
-- get_current_user: any valid token (even a deactivated user) -> used by /me
-  and the reactivation endpoints so deactivated users can still act.
-- require_active_user: must be logged in AND active -> used by feature reads.
-- require_admin: must be active AND an admin -> used by all admin actions.
-"""
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
@@ -40,9 +34,7 @@ def require_active_user(current_user: User = Depends(get_current_user)) -> User:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Account is deactivated",
         )
-    # Suspension gate (Improvement 11): suspended users can log in and reach
-    # /me + reinstatement endpoints (those use get_current_user), but every
-    # protected business/admin action is blocked here.
+    
     if current_user.is_suspended:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

@@ -1,6 +1,4 @@
-"""Audit log: an immutable record of important actions, scoped per company
-for enterprise accountability and compliance.
-"""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

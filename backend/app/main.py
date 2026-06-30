@@ -1,6 +1,4 @@
-"""Application factory: builds the FastAPI app, wires middleware, registers
-routers, creates tables, and seeds initial data on startup.
-"""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 

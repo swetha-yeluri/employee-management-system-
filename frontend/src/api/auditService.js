@@ -1,4 +1,4 @@
-// Audit log API (admin-only, company-scoped).
+
 import axiosClient from "./axiosClient";
 
 export const auditService = {

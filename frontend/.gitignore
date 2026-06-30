@@ -1,6 +1,12 @@
-node_modules
-dist
-.env.local
-*.db
-__pycache__
-.venv
+# Python
+__pycache__/
+*.pyc
+.venv/
+employees.db
+
+# Node
+node_modules/
+dist/
+
+# Misc
+.env

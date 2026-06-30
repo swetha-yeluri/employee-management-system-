@@ -1,4 +1,4 @@
-"""Invitation endpoints. Admin actions are protected; verify/accept are public."""
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 

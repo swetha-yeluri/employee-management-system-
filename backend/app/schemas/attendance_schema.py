@@ -1,4 +1,4 @@
-"""Schemas for the Attendance module."""
+
 from datetime import datetime
 from typing import Optional
 
@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 class AccessStatusOut(BaseModel):
     has_access: bool
-    status: str                       # none | pending | approved | rejected
+    status: str                       
     submitted_on: Optional[datetime] = None
 
 

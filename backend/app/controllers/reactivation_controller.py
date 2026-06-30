@@ -1,6 +1,4 @@
-"""Reactivation workflow: a deactivated user requests reactivation; the admin
-who deactivated them approves/rejects. Company-scoped + audit-logged.
-"""
+
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 

@@ -1,4 +1,4 @@
-// Personal notification API (in-app notices, e.g. department transfer).
+
 import axiosClient from "./axiosClient";
 
 export const notificationService = {

@@ -1,7 +1,4 @@
-"""Attendance endpoints. /access uses require_active_user (so a user can make
-their first request); all feature endpoints require granted attendance access;
-admin approval endpoints require admin.
-"""
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 

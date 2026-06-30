@@ -1,4 +1,4 @@
-// Leave request API.
+
 import axiosClient from "./axiosClient";
 
 export const leaveService = {

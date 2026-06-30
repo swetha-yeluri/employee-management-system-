@@ -1,4 +1,4 @@
-// Invitation API (admin create/list/revoke + public verify/accept).
+
 import axiosClient from "./axiosClient";
 
 export const invitationService = {

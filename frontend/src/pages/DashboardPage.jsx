@@ -1,5 +1,4 @@
-// Analytics dashboard: KPI widget cards + charts, with a refresh button that
-// reloads the data without a page reload.
+
 import { useCallback, useEffect, useState } from "react";
 import { Users, UserCheck, Building2, Clock, RefreshCw } from "lucide-react";
 
@@ -8,6 +7,7 @@ import Spinner from "../components/common/Spinner";
 import Button from "../components/common/Button";
 import StatCard from "../components/dashboard/StatCard";
 import { DepartmentChart, RoleChart, StatusChart } from "../components/dashboard/Charts";
+import CompletionWidget from "../components/dashboard/CompletionWidget";
 
 export default function DashboardPage() {
   const [data, setData] = useState(null);
@@ -43,6 +43,8 @@ export default function DashboardPage() {
           {refreshing ? "Refreshing..." : "Refresh"}
         </Button>
       </div>
+
+      <CompletionWidget />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Employees" value={data.total_employees} icon={Users}

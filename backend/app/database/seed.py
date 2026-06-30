@@ -1,9 +1,4 @@
-"""Seeds departments, two companies, their users, and employees.
 
-Primary company is "Employee-Management-System" with demo logins
-admin@gmail.com / user@gmail.com. A second company exists so multi-tenant
-isolation is visible. Runs only when tables are empty (safe across restarts).
-"""
 from sqlalchemy.orm import Session
 
 from app.database.connection import SessionLocal
@@ -18,9 +13,7 @@ SECONDARY = "Globex"
 
 DEPARTMENTS = ["Engineering", "Human Resources", "Sales", "Finance", "Design"]
 
-# (name, email, position, status, department, company)
-# NOTE: the first two emails match the demo login accounts, so when an admin
-# transfers them the matching user receives an in-app notification.
+
 EMPLOYEES = [
     ("Demo User", "user@gmail.com", "Software Engineer", "Active", "Engineering", PRIMARY),
     ("Demo Admin", "admin@gmail.com", "Engineering Manager", "Active", "Engineering", PRIMARY),
@@ -37,7 +30,7 @@ EMPLOYEES = [
     ("Myra Joshi", "myra@globex.com", "UX Designer", "On Leave", "Design", SECONDARY),
 ]
 
-# (email, password, role, company)
+
 USERS = [
     ("admin@gmail.com", "admin123", "admin", PRIMARY),
     ("user@gmail.com", "user123", "user", PRIMARY),

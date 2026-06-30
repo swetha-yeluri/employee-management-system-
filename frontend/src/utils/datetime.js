@@ -1,7 +1,4 @@
-// The backend stores timestamps as naive UTC (datetime.utcnow()). A naive ISO
-// string ("2026-06-15T09:14:00") is interpreted by the browser as *local* time,
-// which makes check-in/out times wrong by the timezone offset. We append "Z" so
-// the browser treats it as UTC and converts it to the user's local time.
+
 export function toLocalDate(value) {
   if (!value) return null;
   let s = value;

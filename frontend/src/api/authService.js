@@ -1,4 +1,4 @@
-// Auth-related API calls, isolated from UI components.
+
 import axiosClient from "./axiosClient";
 
 export const authService = {

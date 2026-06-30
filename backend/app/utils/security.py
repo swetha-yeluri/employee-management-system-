@@ -1,6 +1,4 @@
-"""Password hashing and JWT helpers. Isolating crypto here keeps the
-controllers readable and makes the auth logic easy to audit.
-"""
+
 from datetime import datetime, timedelta, timezone
 
 from jose import JWTError, jwt

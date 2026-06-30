@@ -1,4 +1,4 @@
-"""Schema for export history."""
+
 from datetime import datetime
 from pydantic import BaseModel
 

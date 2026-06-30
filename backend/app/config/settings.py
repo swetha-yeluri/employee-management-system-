@@ -1,9 +1,4 @@
-"""Central application configuration.
 
-All tunable values live here so the rest of the codebase never hardcodes
-secrets, paths, or magic numbers. Values can be overridden via environment
-variables, which keeps the code 12-factor friendly.
-"""
 import os
 from pathlib import Path
 

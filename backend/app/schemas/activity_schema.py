@@ -1,4 +1,4 @@
-"""Schemas for account activity tracking (Improvement 9)."""
+
 from datetime import datetime
 from typing import Optional
 

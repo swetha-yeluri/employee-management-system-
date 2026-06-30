@@ -1,16 +1,15 @@
-// Dark navy sidebar matching the reference UI. Brand shows the real project
-// name. Admin-only / user-only items are filtered by role.
+
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard, Users, Building2, CalendarCheck,
-  Settings, Inbox, ScrollText, Users2, UserCog, UserCheck, Activity, Download,
+  Settings, Inbox, ScrollText, Users2, UserCog, UserCheck, Activity, Download,BarChart3,
 } from "lucide-react";
 
 import { NAV_ITEMS } from "../../utils/constants";
 import { useAuth } from "../../context/AuthContext";
 
 const ICONS = {
-  LayoutDashboard, Users, Building2, CalendarCheck, Settings, Inbox, ScrollText, UserCog, UserCheck, Activity, Download,
+  LayoutDashboard, Users, Building2, CalendarCheck, Settings, Inbox, ScrollText, UserCog, UserCheck, Activity, Download, BarChart3,
 };
 
 export default function Sidebar({ open }) {

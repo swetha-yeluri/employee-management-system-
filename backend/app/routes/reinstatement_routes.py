@@ -1,6 +1,4 @@
-"""Reinstatement request endpoints (Improvement 11). Submit/track use
-get_current_user so suspended users can reach them; admin actions require admin.
-"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

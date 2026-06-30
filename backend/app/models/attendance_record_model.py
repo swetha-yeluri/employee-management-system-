@@ -1,4 +1,4 @@
-"""A single check-in / check-out record for a user (Improvement 7)."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String

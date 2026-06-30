@@ -1,4 +1,4 @@
-"""Reporting endpoints. Admin-only and company-scoped."""
+
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session

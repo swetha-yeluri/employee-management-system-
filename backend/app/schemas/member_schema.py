@@ -1,4 +1,4 @@
-"""Schema for returning company members."""
+
 from pydantic import BaseModel, EmailStr
 
 

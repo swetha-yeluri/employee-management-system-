@@ -1,4 +1,4 @@
-// Account activity API (admin view).
+
 import axiosClient from "./axiosClient";
 
 export const activityService = {

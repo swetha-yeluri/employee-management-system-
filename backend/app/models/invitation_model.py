@@ -1,4 +1,4 @@
-"""User invitation: a pending invite (with a token/link) to join a company."""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

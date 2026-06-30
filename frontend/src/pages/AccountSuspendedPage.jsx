@@ -1,5 +1,4 @@
-// Shown to a suspended user after login (Improvement 11). Displays the
-// suspension details and lets them submit + track a reinstatement request.
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { ShieldAlert, LogOut, Send } from "lucide-react";

@@ -1,4 +1,4 @@
-"""Department endpoints - used by the employee filter and forms."""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

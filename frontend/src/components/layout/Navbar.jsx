@@ -1,10 +1,4 @@
-// Top navbar: sidebar toggle, search, notification bell (dropdown), theme, user.
-//
-// Notification bell — works for the whole project:
-//  - Admin: lists every pending approval (role upgrade, reactivation, attendance
-//           access, leave) with inline Approve / Reject + a badge count.
-//  - User : lists the status of their own requests (role, attendance access,
-//           leave); badge counts the ones still pending.
+
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -48,7 +42,7 @@ export default function Navbar({ onToggleSidebar, title }) {
   const panelRef = useRef(null);
   const bellRef = useRef(null);
 
-  // Build the notification list (admins: actionable; users: informational).
+  
   const load = async () => {
     const notifs = await notificationService.getMine().catch(() => []);
     const notifItems = notifs.map((n) => ({

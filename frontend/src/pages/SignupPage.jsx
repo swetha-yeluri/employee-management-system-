@@ -1,8 +1,4 @@
-// Signup with role + company (multi-tenant), auto-login on success.
-// ALSO handles invitation links: /signup?token=<token>
-//   -> email is pre-filled from the invite (read-only), company is the inviting
-//      company, role defaults to the invited role, and submitting accepts the
-//      invitation (joining that company) instead of creating a brand-new company.
+
 import { useEffect, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -31,14 +27,14 @@ export default function SignupPage() {
     email: "",
     password: "",
     confirm: "",
-    role: "user",                 // default role = User
-    company: DEFAULT_COMPANY,     // default company
+    role: "user",                 
+    company: DEFAULT_COMPANY,     
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [inviteError, setInviteError] = useState("");
 
-  // If an invite token is present, fetch its details and pre-fill the form.
+  
   useEffect(() => {
     if (!isInvite) return;
     invitationService
@@ -56,7 +52,7 @@ export default function SignupPage() {
       );
   }, [token, isInvite]);
 
-  // Logged-in users go to the dashboard — UNLESS they opened an invite link.
+  
   if (isAuthenticated && !isInvite) return <Navigate to="/dashboard" replace />;
 
   const update = (key) => (e) =>

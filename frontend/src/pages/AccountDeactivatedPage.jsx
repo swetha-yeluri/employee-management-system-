@@ -1,5 +1,4 @@
-// Shown to a logged-in but deactivated user. They can view status, submit a
-// reactivation request, track it, and log out. No app access otherwise.
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";

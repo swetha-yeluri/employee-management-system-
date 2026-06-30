@@ -1,4 +1,4 @@
-// Reactivation request API.
+
 import axiosClient from "./axiosClient";
 
 export const reactivationService = {

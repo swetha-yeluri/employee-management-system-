@@ -1,4 +1,4 @@
-"""Personal notification helpers used by other modules (e.g. transfers)."""
+
 from sqlalchemy.orm import Session
 
 from app.models.notification_model import Notification

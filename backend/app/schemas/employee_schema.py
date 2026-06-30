@@ -1,6 +1,3 @@
-"""Pydantic schemas validate incoming requests and shape outgoing JSON,
-keeping the API contract separate from the database model.
-"""
 from typing import Optional
 
 from pydantic import BaseModel, EmailStr, Field
@@ -12,7 +9,13 @@ class EmployeeBase(BaseModel):
     position: str = Field(..., min_length=2, max_length=80)
     status: str = Field(default="Active")
     department_id: Optional[int] = None
-
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    phone: Optional[str] = None
+    profile_picture: Optional[str] = None
+    address: Optional[str] = None
+    date_of_joining: Optional[str] = None
+    employee_code: Optional[str] = None
 
 class EmployeeCreate(EmployeeBase):
     """Payload for POST /employees."""
@@ -25,6 +28,13 @@ class EmployeeUpdate(BaseModel):
     position: Optional[str] = Field(None, min_length=2, max_length=80)
     status: Optional[str] = None
     department_id: Optional[int] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    phone: Optional[str] = None
+    profile_picture: Optional[str] = None
+    address: Optional[str] = None
+    date_of_joining: Optional[str] = None
+    employee_code: Optional[str] = None
 
 
 class DepartmentOut(BaseModel):
@@ -45,3 +55,9 @@ class EmployeeOut(EmployeeBase):
 
 class TransferRequest(BaseModel):
     department_id: int
+
+class CompletionOut(BaseModel):
+    percent: int
+    filled: int
+    total: int
+    missing: list[str]

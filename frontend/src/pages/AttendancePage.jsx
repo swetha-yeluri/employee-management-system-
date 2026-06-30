@@ -1,8 +1,4 @@
-// Attendance module.
-//  - Admin: company attendance overview + CSV download (existing behaviour).
-//  - User : approval-gated module. Before approval -> "Access Pending" screen
-//           (a request is auto-created server-side). After approval -> check
-//           in/out, today's status, total hours, recent history, and leave.
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -21,7 +17,7 @@ import Input from "../components/common/Input";
 
 import { formatTime as fmtTime, formatDateTime as fmtDate } from "../utils/datetime";
 
-/* ===================== ADMIN VIEW (overview + CSV) ===================== */
+
 function AdminAttendance() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -88,7 +84,7 @@ function AdminAttendance() {
   );
 }
 
-/* ===================== USER: pending-access screen ===================== */
+
 function PendingAccess({ submittedOn, rejected }) {
   return (
     <div className="mx-auto max-w-lg rounded-2xl border border-zinc-200 bg-white p-8 text-center shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
@@ -109,7 +105,7 @@ function PendingAccess({ submittedOn, rejected }) {
   );
 }
 
-/* ===================== USER: attendance module ===================== */
+
 function UserAttendance() {
   const [loading, setLoading] = useState(true);
   const [access, setAccess] = useState(null);

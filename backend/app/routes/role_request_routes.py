@@ -1,8 +1,4 @@
-"""Role-change request endpoints.
 
-- Creating / viewing one's own requests requires any logged-in user.
-- Viewing pending requests and approving/rejecting requires admin.
-"""
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 

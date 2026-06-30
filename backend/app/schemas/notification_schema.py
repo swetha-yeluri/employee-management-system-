@@ -1,4 +1,4 @@
-"""Schema for personal notifications."""
+
 from datetime import datetime
 from pydantic import BaseModel
 

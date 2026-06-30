@@ -1,6 +1,4 @@
-"""Authentication business logic: login, signup, and password reset.
-Signup attaches the new user to a company (created on demand).
-"""
+
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 

@@ -1,7 +1,5 @@
-"""Employee API endpoints. Reads require any logged-in user (scoped to their
-company); writes/deletes require admin (also company-scoped).
-"""
-from fastapi import APIRouter, Depends, status
+
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 
 from app.controllers import employee_controller as ctrl
@@ -10,6 +8,8 @@ from app.models.user_model import User
 from app.schemas.employee_schema import TransferRequest, EmployeeCreate, EmployeeOut, EmployeeUpdate
 from app.schemas.activity_schema import TransferHistoryOut
 from app.utils.deps import require_active_user, require_admin
+from app.controllers import profile_controller
+from app.schemas.employee_schema import CompletionOut
 
 router = APIRouter(prefix="/api/employees", tags=["Employees"])
 
@@ -71,3 +71,34 @@ def transfer_employee(employee_id: int, payload: TransferRequest,
 def transfer_history(employee_id: int, db: Session = Depends(get_db),
                      current_admin: User = Depends(require_admin)):
     return ctrl.list_transfers(db, current_admin.company_id, employee_id)
+
+
+@router.get("/{employee_id}/completion", response_model=CompletionOut)
+def employee_completion(employee_id: int, db: Session = Depends(get_db),
+                        current_user: User = Depends(require_active_user)):
+    emp = ctrl.get_employee(db, current_user.company_id, employee_id)
+    return profile_controller.compute_completion(emp)
+
+
+@router.get("/completion/me", response_model=CompletionOut)
+def my_completion(db: Session = Depends(get_db),
+                  current_user: User = Depends(require_active_user)):
+    emp = ctrl.get_employee_by_email(db, current_user.company_id, current_user.email)
+    if not emp:
+        raise HTTPException(status_code=404, detail="No employee profile linked to your account")
+    return profile_controller.compute_completion(emp)
+
+
+@router.get("/completion/all")
+def all_completion(threshold: int = 100, db: Session = Depends(get_db),
+                   current_admin: User = Depends(require_admin)):
+    employees = ctrl.list_employees(db, current_admin.company_id)
+    result = []
+    for emp in employees:
+        c = profile_controller.compute_completion(emp)
+        result.append({
+            "id": emp.id, "name": emp.name, "email": emp.email,
+            "percent": c["percent"], "missing": c["missing"],
+        })
+    
+    return [r for r in result if r["percent"] < threshold]

@@ -1,4 +1,4 @@
-// Suspension API (Improvement 11).
+
 import axiosClient from "./axiosClient";
 
 export const suspensionService = {

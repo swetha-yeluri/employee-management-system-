@@ -1,7 +1,4 @@
-"""Reinstatement request logic (Improvement 11): a suspended user asks to be
-reinstated; the suspending admin (and other company admins) review and decide.
-On approval the user becomes Active again with their original role intact.
-"""
+
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
@@ -34,7 +31,7 @@ def submit(db: Session, user: User, reason: str) -> ReinstatementRequest:
         db, company_id=user.company_id, user_name=user.email,
         action="Reinstatement Request Submitted", target=reason,
     )
-    # Notify the admin who suspended this user (if any)
+    
     if user.suspended_by:
         notification_controller.notify_email(
             db, company_id=user.company_id, email=user.suspended_by,

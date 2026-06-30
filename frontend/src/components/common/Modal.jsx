@@ -1,4 +1,4 @@
-// Accessible modal shell used for the employee create/edit forms (Task 6).
+
 import { X } from "lucide-react";
 
 export default function Modal({ open, title, onClose, children }) {

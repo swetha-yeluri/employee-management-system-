@@ -1,7 +1,4 @@
-"""Account activity tracking (Improvement 9): records logins/logouts with
-browser + IP, detects new device / new IP, and exposes a company-scoped admin
-view. All events are audit-logged.
-"""
+
 from datetime import datetime
 
 from sqlalchemy.orm import Session

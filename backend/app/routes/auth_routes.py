@@ -1,6 +1,4 @@
-"""Authentication endpoints: login, signup, forgot/reset password, profile,
-and logout. Login/logout capture IP + browser for activity tracking.
-"""
+
 from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 

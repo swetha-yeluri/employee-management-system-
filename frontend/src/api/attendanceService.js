@@ -1,4 +1,4 @@
-// Attendance module API (access + check-in/out + history + admin approvals).
+
 import axiosClient from "./axiosClient";
 
 export const attendanceService = {

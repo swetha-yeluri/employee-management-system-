@@ -1,4 +1,4 @@
-"""Personal notification endpoints for the signed-in user."""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

@@ -1,4 +1,4 @@
-// Sortable, paginated table view of employees.
+
 import { useState, useMemo } from "react";
 import { Pencil, Trash2, ChevronUp, ChevronDown, ArrowRightLeft } from "lucide-react";
 import StatusBadge from "./StatusBadge";

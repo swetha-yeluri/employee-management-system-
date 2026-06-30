@@ -1,6 +1,4 @@
-"""Company entity for multi-tenant data isolation. Every user and employee
-belongs to exactly one company, and all data access is scoped to it.
-"""
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 

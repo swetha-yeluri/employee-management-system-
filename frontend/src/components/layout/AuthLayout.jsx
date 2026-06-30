@@ -1,5 +1,4 @@
-// Auth screen shell (login, signup, forgot password). Simple centered form,
-// no side branding panel.
+
 export default function AuthLayout({ heading, subheading, children }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 p-6 dark:bg-zinc-950">

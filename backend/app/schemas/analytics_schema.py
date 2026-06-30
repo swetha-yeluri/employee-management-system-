@@ -1,4 +1,4 @@
-"""Response shapes for the analytics dashboard APIs."""
+
 from pydantic import BaseModel
 
 

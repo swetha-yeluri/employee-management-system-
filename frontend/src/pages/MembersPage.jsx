@@ -1,6 +1,4 @@
-// Admin-only module: Members & Invitations.
-//  - Active members with status + Deactivate
-//  - Create invitations, copy invite link, view + revoke pending invitations
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { UserX, Plus, Copy, Trash2, Mail, Users2, Ban } from "lucide-react";

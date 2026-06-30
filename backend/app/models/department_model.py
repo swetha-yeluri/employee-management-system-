@@ -1,4 +1,4 @@
-"""Department table. One department has many employees."""
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 

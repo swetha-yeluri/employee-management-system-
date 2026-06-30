@@ -1,6 +1,4 @@
-"""Leave endpoints. Users (with attendance access) submit/list their own;
-admins review pending and approve/reject.
-"""
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 

@@ -1,4 +1,4 @@
-"""Schema for returning audit log entries."""
+
 from datetime import datetime
 
 from pydantic import BaseModel

@@ -1,5 +1,4 @@
-// KPI widget card matching the reference: a coloured icon circle on the left,
-// with the label and the big number beside it.
+
 export default function StatCard({ label, value, icon: Icon, accent }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-soft dark:border-slate-800 dark:bg-slate-900">

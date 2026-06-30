@@ -1,6 +1,4 @@
-"""Leave request logic: submit (user), list mine, and admin approve/reject.
-Company-scoped + audit-logged.
-"""
+
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 

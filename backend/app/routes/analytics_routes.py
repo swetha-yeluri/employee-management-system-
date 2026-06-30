@@ -1,6 +1,4 @@
-"""Analytics dashboard endpoint. Returns KPI counts + chart data, scoped to
-the caller's company.
-"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

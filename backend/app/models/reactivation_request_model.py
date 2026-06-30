@@ -1,6 +1,4 @@
-"""A deactivated user's request to be reactivated, reviewed by the admin who
-deactivated them.
-"""
+
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String

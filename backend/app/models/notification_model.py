@@ -1,4 +1,4 @@
-"""A personal in-app notification for a user (e.g. department transfer notice)."""
+
 from datetime import datetime
 
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String

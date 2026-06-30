@@ -1,6 +1,4 @@
-"""Employee business logic. Every query is scoped to the caller's company
-(multi-tenant isolation) and every write is recorded in the audit log.
-"""
+
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -53,7 +51,7 @@ def create_employee(db: Session, current_user: User, payload: EmployeeCreate) ->
         )
     _validate_department(db, payload.department_id)
 
-    # Force the new employee into the caller's company.
+    
     employee = Employee(**payload.model_dump(), company_id=current_user.company_id)
     db.add(employee)
     db.commit()
@@ -80,6 +78,25 @@ def update_employee(
     for field, value in data.items():
         setattr(employee, field, value)
     db.commit()
+    
+    from app.controllers import profile_controller, audit_controller, notification_controller
+    c = profile_controller.compute_completion(employee)
+
+    audit_controller.write_log(db, company_id=current_user.company_id,
+        user_name=current_user.email, action="Profile Updated", target=employee.email)
+    audit_controller.write_log(db, company_id=current_user.company_id,
+        user_name=current_user.email, action="Profile Completion Score Changed",
+        target=f"{employee.email}: {c['percent']}%")
+
+    if c["percent"] == 100:
+        audit_controller.write_log(db, company_id=current_user.company_id,
+            user_name=current_user.email, action="Profile Reached 100% Completion",
+            target=employee.email)
+        notification_controller.notify_email(db, company_id=current_user.company_id,
+            email=employee.email, message="Your profile is now 100% complete!")
+    elif c["percent"] < 50:   # below threshold
+        notification_controller.notify_email(db, company_id=current_user.company_id,
+            email=employee.email, message=f"Your profile is only {c['percent']}% complete. Please update it.")
     db.refresh(employee)
 
     audit_controller.write_log(
@@ -89,6 +106,38 @@ def update_employee(
         action="Employee Updated",
         target=employee.name,
     )
+
+    
+    from app.controllers import profile_controller, notification_controller
+    c = profile_controller.compute_completion(employee)
+
+    audit_controller.write_log(
+        db, company_id=current_user.company_id, user_name=current_user.email,
+        action="Profile Updated", target=employee.name,
+    )
+    audit_controller.write_log(
+        db, company_id=current_user.company_id, user_name=current_user.email,
+        action="Profile Completion Score Changed",
+        target=f"{employee.name}: {c['percent']}%",
+    )
+
+    if c["percent"] == 100:
+        audit_controller.write_log(
+            db, company_id=current_user.company_id, user_name=current_user.email,
+            action="Profile Reached 100% Completion", target=employee.name,
+        )
+        notification_controller.notify_email(
+            db, company_id=current_user.company_id, email=employee.email,
+            message="Your profile is now 100% complete!",
+        )
+    elif c["percent"] < 50:
+        notification_controller.notify_email(
+            db, company_id=current_user.company_id, email=employee.email,
+            message=f"Your profile is only {c['percent']}% complete. Please update it.",
+        )
+
+    return employee          
+
     return employee
 
 
@@ -108,8 +157,7 @@ def delete_employee(db: Session, current_user: User, employee_id: int) -> None:
 
 
 def transfer_employee(db, current_user, employee_id, new_department_id):
-    """Move an employee to a different department. Creates an audit log, notifies
-    the matching user account (if any), and re-evaluates permissions."""
+    
     employee = get_employee(db, current_user.company_id, employee_id)
     new_dept = db.query(Department).filter(Department.id == new_department_id).first()
     if not new_dept:
@@ -144,19 +192,24 @@ def transfer_employee(db, current_user, employee_id, new_department_id):
         message=f"You have been transferred from {old_dept} to {new_dept.name}.",
     )
 
-    # 3) Update permissions if required. In this system permissions are
-    #    role-based, not department-based, so a transfer does not change a
-    #    user's role/access. The hook is here if department-driven rules are
-    #    ever added.
+    
     return employee
 
 
 def list_transfers(db, company_id, employee_id):
-    """Department transfer history for one employee (company-scoped)."""
+    
     return (
         db.query(DepartmentTransfer)
         .filter(DepartmentTransfer.company_id == company_id,
                 DepartmentTransfer.employee_id == employee_id)
         .order_by(DepartmentTransfer.created_at.desc())
         .all()
+    )
+
+def get_employee_by_email(db, company_id, email):
+    
+    return (
+        db.query(Employee)
+        .filter(Employee.company_id == company_id, Employee.email == email)
+        .first()
     )

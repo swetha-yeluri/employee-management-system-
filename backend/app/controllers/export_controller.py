@@ -1,7 +1,4 @@
-"""Data Export Center (Improvement 10): gathers company-scoped data for several
-modules and renders it as CSV, Excel, or PDF. Every export is recorded in the
-export history.
-"""
+
 import csv
 import io
 
