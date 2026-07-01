@@ -37,6 +37,7 @@ class TodayOut(BaseModel):
     checked_in: bool
     checked_out: bool
     record: Optional[RecordOut] = None
+    is_holiday: bool = False
 
 
 class SummaryOut(BaseModel):

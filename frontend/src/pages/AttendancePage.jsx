@@ -182,6 +182,8 @@ function UserAttendance() {
 
   const checkedIn = today?.checked_in;
   const checkedOut = today?.checked_out;
+  const isHoliday = today?.is_holiday;
+
   const statusBadge = (s) => {
     const map = {
       pending: "bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400",
@@ -193,6 +195,11 @@ function UserAttendance() {
 
   return (
     <div className="space-y-6">
+      {isHoliday && (
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400">
+           Today is a holiday. Check-in / Check-out is not required.
+        </div>
+      )}
       {/* Today + actions */}
       <section className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
@@ -206,10 +213,10 @@ function UserAttendance() {
           <p className="text-xs text-zinc-400">across {summary.days} day(s)</p>
         </div>
         <div className="flex flex-col justify-center gap-2 rounded-2xl border border-zinc-200 bg-white p-5 shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
-          <Button onClick={() => check("in")} disabled={busy || (checkedIn && !checkedOut)}>
+          <Button onClick={() => check("in")} disabled={busy || (checkedIn && !checkedOut) || isHoliday}>
             <LogIn size={16} /> Check In
           </Button>
-          <Button variant="secondary" onClick={() => check("out")} disabled={busy || !checkedIn || checkedOut}>
+          <Button variant="secondary" onClick={() => check("out")} disabled={busy || !checkedIn || checkedOut || isHoliday}>
             <LogOut size={16} /> Check Out
           </Button>
         </div>
