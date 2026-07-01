@@ -4,7 +4,7 @@ from datetime import datetime
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from app.controllers import audit_controller
+from app.controllers import audit_controller, holiday_controller
 from app.models.attendance_access_request_model import AttendanceAccessRequest
 from app.models.attendance_record_model import AttendanceRecord
 from app.models.user_model import User
@@ -14,7 +14,7 @@ def _display_name(email: str) -> str:
     return email.split("@")[0].replace(".", " ").title()
 
 
-# ---------- access ----------
+
 def get_access_status(db: Session, user: User) -> dict:
     """Returns the user's attendance access status. On the FIRST call for a user
     with no access and no existing request, auto-creates a pending request."""
@@ -39,7 +39,7 @@ def get_access_status(db: Session, user: User) -> dict:
         return {"has_access": False, "status": existing.status,
                 "submitted_on": existing.created_at}
 
-    # No request yet -> auto-create one (requirement 3)
+    
     req = AttendanceAccessRequest(
         company_id=user.company_id, user_id=user.id, user_email=user.email,
         user_name=_display_name(user.email), status="pending",
@@ -104,7 +104,7 @@ def reject_access(db: Session, admin: User, req_id: int):
     return req
 
 
-# ---------- check-in / check-out ----------
+
 def _today_open_record(db, user):
     today = datetime.utcnow().date().isoformat()
     return (
@@ -128,11 +128,16 @@ def _today_record(db, user):
 
 
 def check_in(db: Session, user: User):
+    # Task 13: no check-in required on a holiday
+    today = datetime.utcnow().date().isoformat()
+    if holiday_controller.is_holiday(db, user.company_id, today):
+        raise HTTPException(400, "Today is a holiday. Check-in is not required.")
+
     if _today_open_record(db, user):
         raise HTTPException(409, "You are already checked in")
     rec = AttendanceRecord(
         company_id=user.company_id, user_id=user.id,
-        work_date=datetime.utcnow().date().isoformat(),
+        work_date=today,
         check_in=datetime.utcnow(),
     )
     db.add(rec)
@@ -146,6 +151,11 @@ def check_in(db: Session, user: User):
 
 
 def check_out(db: Session, user: User):
+    # Task 13: no check-out required on a holiday
+    today = datetime.utcnow().date().isoformat()
+    if holiday_controller.is_holiday(db, user.company_id, today):
+        raise HTTPException(400, "Today is a holiday. Check-out is not required.")
+
     rec = _today_open_record(db, user)
     if not rec:
         raise HTTPException(409, "You are not checked in")
@@ -162,10 +172,12 @@ def check_out(db: Session, user: User):
 
 def get_today(db: Session, user: User) -> dict:
     rec = _today_record(db, user)
+    today = datetime.utcnow().date().isoformat()
     return {
         "checked_in": rec is not None,
         "checked_out": bool(rec and rec.check_out),
         "record": rec,
+        "is_holiday": holiday_controller.is_holiday(db, user.company_id, today),
     }
 
 

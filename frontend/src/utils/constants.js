@@ -7,6 +7,7 @@ export const NAV_ITEMS = [
   { key: "members", label: "Members", path: "/members", icon: "UserCog", adminOnly: true },
   { key: "activity", label: "Activity", path: "/activity", icon: "Activity", adminOnly: true },
   { key: "audit", label: "Audit Logs", path: "/audit-logs", icon: "ScrollText", adminOnly: true },
+  { key: "holidays", label: "Holiday Calendar", path: "/holidays", icon: "CalendarDays" },
   { key: "export", label: "Data Export Center", path: "/data-export", icon: "Download", adminOnly: true },
   { key: "settings", label: "Settings", path: "/settings", icon: "Settings" },
   { key: "completion", label: "Profile Completion", path: "/profile-completion", icon: "BarChart3", adminOnly: true },
