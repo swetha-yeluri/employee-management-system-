@@ -25,6 +25,18 @@ def get_current_user(
     user = db.query(User).filter(User.email == payload["sub"]).first()
     if user is None:
         raise _credentials_error
+    
+    sid = payload.get("sid")
+    if sid:
+        from app.controllers import session_controller
+        session = session_controller.get_by_token(db, sid)
+        if session and session.status != "active":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Session ended. Please log in again.",
+            )
+        if session:
+            session_controller.touch(db, session)
     return user
 
 

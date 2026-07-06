@@ -16,7 +16,7 @@ def list_holidays(db: Session, company_id: int):
 
 
 def create_holiday(db: Session, admin, payload):
-    # duplicate check: same date + same company
+    
     exists = (
         db.query(Holiday)
         .filter(Holiday.company_id == admin.company_id, Holiday.date == payload.date)

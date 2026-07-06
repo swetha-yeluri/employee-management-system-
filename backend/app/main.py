@@ -23,7 +23,8 @@ from app.routes import (
     export_routes,
     suspension_routes,
     reinstatement_routes,
-    holiday_routes,   
+    holiday_routes,  
+    session_routes, 
 )
 
 import app.models  # noqa: F401  (register tables on Base)
@@ -60,7 +61,8 @@ def create_app() -> FastAPI:
     app.include_router(suspension_routes.router)
     app.include_router(reinstatement_routes.router)
     app.include_router(holiday_routes.router)
-
+    app.include_router(session_routes.router)
+    
     @app.on_event("startup")
     def on_startup() -> None:
         Base.metadata.create_all(bind=engine)

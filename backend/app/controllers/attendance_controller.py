@@ -128,7 +128,7 @@ def _today_record(db, user):
 
 
 def check_in(db: Session, user: User):
-    # Task 13: no check-in required on a holiday
+    
     today = datetime.utcnow().date().isoformat()
     if holiday_controller.is_holiday(db, user.company_id, today):
         raise HTTPException(400, "Today is a holiday. Check-in is not required.")
@@ -151,7 +151,7 @@ def check_in(db: Session, user: User):
 
 
 def check_out(db: Session, user: User):
-    # Task 13: no check-out required on a holiday
+    
     today = datetime.utcnow().date().isoformat()
     if holiday_controller.is_holiday(db, user.company_id, today):
         raise HTTPException(400, "Today is a holiday. Check-out is not required.")
