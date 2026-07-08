@@ -1,5 +1,4 @@
-// Login Devices (Task 14 + 15). Users manage own devices; admins monitor all
-// company sessions, force-logout / revoke (single or multiple), filter, search.
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { MonitorSmartphone, LogOut, Pencil, ShieldX, Ban } from "lucide-react";
