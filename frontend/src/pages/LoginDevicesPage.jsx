@@ -1,4 +1,5 @@
-
+// Login Devices (Task 14 + 15). Users manage own devices; admins monitor all
+// company sessions, force-logout / revoke (single or multiple), filter, search.
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { MonitorSmartphone, LogOut, Pencil, ShieldX, Ban } from "lucide-react";
@@ -24,6 +25,7 @@ export default function LoginDevicesPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [selected, setSelected] = useState([]);   // multiple revoke
 
   const load = async () => {
     setLoading(true);
@@ -53,7 +55,20 @@ export default function LoginDevicesPage() {
 
   const logoutOthers = async () => {
     try { const r = await sessionService.logoutOthers(); toast.success(`Logged out ${r.logged_out} device(s)`); load(); }
-    catch (e) { toast.error("Failed"); }
+    catch { toast.error("Failed"); }
+  };
+
+  const toggleSelect = (id) =>
+    setSelected((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
+
+  const revokeSelected = async () => {
+    if (selected.length === 0) { toast.error("Select sessions first"); return; }
+    for (const id of selected) {
+      await sessionService.revoke(id).catch(() => {});
+    }
+    toast.success(`Revoked ${selected.length} session(s)`);
+    setSelected([]);
+    load();
   };
 
   const allFiltered = all.filter((s) => {
@@ -117,23 +132,43 @@ export default function LoginDevicesPage() {
       {/* ALL USERS (ADMIN) */}
       {tab === "all" && isAdmin && (
         <div className="space-y-4">
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <input placeholder="Search by user..." value={search} onChange={(e) => setSearch(e.target.value)}
               className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900" />
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}
               className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900">
-              <option>All</option><option value="active">Active</option>
-              <option value="logged_out">Logged Out</option><option value="revoked">Revoked</option>
+              <option>All</option>
+              <option value="active">Active</option>
+              <option value="logged_out">Logged Out</option>
+              <option value="revoked">Revoked</option>
+              <option value="expired">Expired</option>
             </select>
+            {selected.length > 0 && (
+              <Button onClick={revokeSelected}>
+                <ShieldX size={16} /> Revoke Selected ({selected.length})
+              </Button>
+            )}
           </div>
           <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-soft dark:border-zinc-800 dark:bg-zinc-900">
             <table className="w-full text-sm">
               <thead className="bg-zinc-50 text-left text-xs uppercase text-zinc-500 dark:bg-zinc-800/60">
-                <tr><th className="px-4 py-3">User</th><th className="px-4 py-3">Browser / IP</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Actions</th></tr>
+                <tr>
+                  <th className="px-4 py-3"></th>
+                  <th className="px-4 py-3">User</th>
+                  <th className="px-4 py-3">Browser / IP</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Actions</th>
+                </tr>
               </thead>
               <tbody>
                 {allFiltered.map((s) => (
                   <tr key={s.id} className="border-t border-zinc-100 dark:border-zinc-800">
+                    <td className="px-4 py-3">
+                      {s.status === "active" && (
+                        <input type="checkbox" checked={selected.includes(s.id)}
+                          onChange={() => toggleSelect(s.id)} />
+                      )}
+                    </td>
                     <td className="px-4 py-3">{s.user_email}</td>
                     <td className="px-4 py-3 text-zinc-500">{s.device_name}<br /><span className="text-xs">{s.ip}</span></td>
                     <td className="px-4 py-3"><Badge s={s.status} />{s.termination_reason && <p className="text-xs text-zinc-400">{s.termination_reason}</p>}</td>

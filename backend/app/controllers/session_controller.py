@@ -1,12 +1,14 @@
 
 import secrets
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from app.controllers import audit_controller
 from app.models.login_session_model import LoginSession
+
+INACTIVITY_LIMIT = timedelta(minutes=30)   
 
 
 def _device_name(browser: str) -> str:
@@ -44,12 +46,31 @@ def touch(db: Session, session: LoginSession):
     db.commit()
 
 
+def expire_stale(db: Session, company_id: int):
+    """Task 15: mark inactive active-sessions as expired + audit."""
+    cutoff = datetime.utcnow() - INACTIVITY_LIMIT
+    stale = (db.query(LoginSession)
+             .filter(LoginSession.company_id == company_id,
+                     LoginSession.status == "active",
+                     LoginSession.last_activity_at < cutoff)
+             .all())
+    for s in stale:
+        s.status = "expired"
+        s.termination_reason = "Session Expired"
+        audit_controller.write_log(db, company_id=s.company_id, user_name=s.user_email,
+            action="Session Expired", target=f"{s.device_name} ({s.user_email})")
+    if stale:
+        db.commit()
+
+
 def list_my(db: Session, user):
+    expire_stale(db, user.company_id)
     return (db.query(LoginSession).filter(LoginSession.user_id == user.id)
             .order_by(LoginSession.last_activity_at.desc()).all())
 
 
 def list_all(db: Session, admin):
+    expire_stale(db, admin.company_id)
     return (db.query(LoginSession).filter(LoginSession.company_id == admin.company_id)
             .order_by(LoginSession.last_activity_at.desc()).all())
 
