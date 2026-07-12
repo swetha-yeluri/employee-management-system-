@@ -21,6 +21,8 @@ import SettingsPage from "../pages/SettingsPage";
 import ProfileCompletionPage from "../pages/ProfileCompletionPage";
 import HolidaysPage from "../pages/HolidaysPage";
 import LoginDevicesPage from "../pages/LoginDevicesPage";
+import SkillsPage from "../pages/SkillsPage";
+import AdminCompetenciesPage from "../pages/AdminCompetenciesPage";
 
 
 export default function AppRoutes() {
@@ -72,6 +74,8 @@ export default function AppRoutes() {
         <Route path="/profile-completion" element={<ProtectedRoute adminOnly><ProfileCompletionPage /></ProtectedRoute>} />
         <Route path="/holidays" element={<HolidaysPage />} />
         <Route path="/login-devices" element={<LoginDevicesPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/competencies" element={<ProtectedRoute adminOnly><AdminCompetenciesPage /></ProtectedRoute>} />
 
         {/* Settings: available to everyone (admins manage requests here) */}
         <Route path="/settings" element={<SettingsPage />} />

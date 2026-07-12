@@ -12,6 +12,8 @@ export const NAV_ITEMS = [
   { key: "export", label: "Data Export Center", path: "/data-export", icon: "Download", adminOnly: true },
   { key: "settings", label: "Settings", path: "/settings", icon: "Settings" },
   { key: "completion", label: "Profile Completion", path: "/profile-completion", icon: "BarChart3", adminOnly: true },
+  { key: "skills", label: "Skills & Certifications", path: "/skills", icon: "Award" },
+  { key: "competencies", label: "Competencies", path: "/competencies", icon: "Search", adminOnly: true },
 ];
 
 export const EMPLOYEE_STATUSES = ["Active", "Inactive", "On Leave"];

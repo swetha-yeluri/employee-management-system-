@@ -25,6 +25,8 @@ from app.routes import (
     reinstatement_routes,
     holiday_routes,  
     session_routes, 
+    session_routes,
+    skill_routes,
 )
 
 import app.models  # noqa: F401  (register tables on Base)
@@ -62,7 +64,8 @@ def create_app() -> FastAPI:
     app.include_router(reinstatement_routes.router)
     app.include_router(holiday_routes.router)
     app.include_router(session_routes.router)
-    
+    app.include_router(skill_routes.router)
+
     @app.on_event("startup")
     def on_startup() -> None:
         Base.metadata.create_all(bind=engine)

@@ -2,14 +2,14 @@
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard, Users, Building2, CalendarCheck,
-  Settings, Inbox, ScrollText, Users2, UserCog, UserCheck, Activity, Download,BarChart3,CalendarDays,MonitorSmartphone,
+  Settings, Inbox, ScrollText, Users2, UserCog, UserCheck, Activity, Download,BarChart3,CalendarDays,MonitorSmartphone, Award,Search
 } from "lucide-react";
 
 import { NAV_ITEMS } from "../../utils/constants";
 import { useAuth } from "../../context/AuthContext";
 
 const ICONS = {
-  LayoutDashboard, Users, Building2, CalendarCheck, Settings, Inbox, ScrollText, UserCog, UserCheck, Activity, Download, BarChart3,CalendarDays,MonitorSmartphone,
+  LayoutDashboard, Users, Building2, CalendarCheck, Settings, Inbox, ScrollText, UserCog, UserCheck, Activity, Download, BarChart3,CalendarDays,MonitorSmartphone, Award,Search
 };
 
 export default function Sidebar({ open }) {

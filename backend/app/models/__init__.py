@@ -16,6 +16,8 @@ from app.models.role_request_model import RoleRequest
 from app.models.user_model import User
 from app.models.holiday_model import Holiday
 from app.models.login_session_model import LoginSession
+from app.models.skill_model import Skill
+from app.models.certification_model import Certification
 
 __all__ = [
     "AttendanceAccessRequest", "AttendanceRecord", "AuditLog", "Company",
